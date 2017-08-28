@@ -1,0 +1,47 @@
+body{
+  margin:auto;
+}
+.tblcadastro_contatos{
+  width: auto;
+  height: auto;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10px;
+  background-color: magenta;
+}
+.nomeFrm{
+  width: 4 00px;
+  background-color:black;
+  color:lime;
+  font-size:35px;
+  text-align: center;
+  font-weight: bold;
+}
+.campoPreencheFrm{
+  background-color: lime;
+  width:150px;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+.btnFrm{
+  width:auto;
+  border-radius: 2px;
+  float: right;
+}
+.tituloConsulta{
+  width:150px;
+  background-color: lime;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+.resultadoConsulta{
+  width: 150px;
+  background-color: #fff;
+  border-radius: 0px;
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 12px;
+}
