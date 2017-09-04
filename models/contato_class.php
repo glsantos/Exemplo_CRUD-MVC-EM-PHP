@@ -55,9 +55,18 @@
         }
 
         //Método para Atualizar um Registro
-        public function Update(){
+        public function Update($contato){
 
-
+            $sql="update tblpessoa set nome = '".$contato->nome."',
+                                      telefone='".$contato->telefone."',
+                                      celular = '".$contato->celular."',
+                                      email = '".$contato->email."'
+                                      where id_pessoa = ".$contato->id_pessoa.";";
+            if(mysql_query($sql)){
+              ?><script>alert('Alterado'); window.location="index.php";</script><?php
+            }else{
+                echo("Erro no Script de insert do banco de dados");
+            }
         }
 
         //Método para Apagar um Registro
@@ -102,9 +111,26 @@
         }
 
         //Método para Selecionar Registro pelo ID
-        public function SelectById(){
+        public function SelectById($buscaContatos){
 
+            $sql="select * from tblpessoa where id_pessoa = ".$buscaContatos->id_pessoa;
+            $select = mysql_query($sql);
 
+            //Verifica se existe algum registro no BD
+            if($rs=mysql_fetch_array($select)){
+
+                //Instancia da Model Contato
+                $listContato = new Contato();
+
+                //Guarda os dados do BD no Objeto criado
+                $listContato->id_pessoa=$rs['id_pessoa'];
+                $listContato->nome=$rs['nome'];
+                $listContato->telefone=$rs['telefone'];
+                $listContato->celular=$rs['celular'];
+                $listContato->email=$rs['email'];
+
+                return $listContato;
+            }
         }
     }
  ?>

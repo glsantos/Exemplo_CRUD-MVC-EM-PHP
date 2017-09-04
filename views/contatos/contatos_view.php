@@ -1,28 +1,46 @@
 <?php
 
+    $nome="";
+    $telefone="";
+    $celular="";
+    $email="";
+    $action="novo";
+    $IdEditar="";
 
+  if(isset($_GET['modo'])){
 
+      if($_GET['modo'] =='alterar'){
+
+          $id_pessoa=$list->id_pessoa;
+          $nome=$list->nome;
+          $telefone=$list->telefone;
+          $celular=$list->celular;
+          $email=$list->email;
+
+          $action="editar&id=".$id_pessoa;
+      }
+  }
  ?>
-<form name="frmcontatos" action="router.php?controller=contatos&modo=novo" method="post">
+<form name="frmcontatos" action="router.php?controller=contatos&modo=<?php echo($action);?>" method="post">
       <table class="tblcadastro_contatos">
         <tr>
           <td colspan="2" class="nomeFrm">Cadastro de Contatinhos</td>
         </tr>
         <tr>
           <td class="campoPreencheFrm">Nome:</td>
-          <td><input type="text" name="txtnome"></td>
+          <td><input type="text" name="txtnome" value="<?php echo($nome);?>"></td>
         </tr>
         <tr>
           <td class="campoPreencheFrm">Telefone:</td>
-          <td><input type="text" name="txttelefone"></td>
+          <td><input type="text" name="txttelefone" value="<?php echo($telefone);?>"></td>
         </tr>
         <tr>
           <td class="campoPreencheFrm">Celular:</td>
-          <td><input type="text" name="txtcelular"></td>
+          <td><input type="text" name="txtcelular" value="<?php echo($celular);?>"></td>
         </tr>
         <tr>
           <td class="campoPreencheFrm">Email:</td>
-          <td><input type="text" name="txtemail"></td>
+          <td><input type="text" name="txtemail" value="<?php echo($email);?>"></td>
         </tr>
         <tr>
           <td colspan="2"><input type="submit" class="btnFrm" name="btnsalvar" value="Salvar"></button></td>
@@ -52,16 +70,23 @@
               $rsContatos = $controller_Contatos->Listar();
 
               $cont=0;
+
               while($cont<count($rsContatos)){
-
-
           ?>
         <tr>
           <td class="resultadoConsulta"><?php echo($rsContatos[$cont]->nome)?></td>
           <td class="resultadoConsulta"><?php echo($rsContatos[$cont]->telefone)?></td>
           <td class="resultadoConsulta"><?php echo($rsContatos[$cont]->celular)?></td>
           <td class="resultadoConsulta"><?php echo($rsContatos[$cont]->email)?></td>
-          <td class="resultadoConsulta">Editar | <a href="router.php?controller=contatos&modo=apagar&id_pessoa=<?php echo($rsContatos[$cont]->id_pessoa)?>">Excluir</a></td>
+          <td class="resultadoConsulta">
+            <a href="router.php?controller=contatos&modo=alterar&id_pessoa=<?php echo($rsContatos[$cont]->id_pessoa)?>">
+                Visualizar
+            </a>
+              |
+            <a href="router.php?controller=contatos&modo=apagar&id_pessoa=<?php echo($rsContatos[$cont]->id_pessoa)?>">
+              Excluir
+            </a>
+          </td>
         </tr>
           <?php
                 $cont+=1;

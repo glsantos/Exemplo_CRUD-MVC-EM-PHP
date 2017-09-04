@@ -29,6 +29,17 @@
                   $controller_contato = new ControllerContato();
                   $controller_contato->Apagar($id_pessoa);
               break;
+
+              case 'alterar':
+                  $controller_contato = new ControllerContato();
+                  //Chamada para o método de buscar um registro no Banco
+                  $controller_contato->Buscar();
+              break;
+
+              case 'editar':
+                  $controller_contato = new ControllerContato();
+                  $controller_contato->Atualizar();
+              break;
           }
     }
  ?>

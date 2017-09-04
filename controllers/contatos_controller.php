@@ -50,7 +50,26 @@
         //Método Atualizar um Registro
         public function Atualizar(){
 
+          if($_SERVER['REQUEST_METHOD']=='POST'){
 
+            $nome=$_POST['txtnome'];
+            $telefone=$_POST['txttelefone'];
+            $celular=$_POST['txtcelular'];
+            $email=$_POST['txtemail'];
+
+            $id_pessoa=$_GET['id'];
+
+            $contato_class = new Contato();
+
+            $contato_class->nome=$nome;
+            $contato_class->telefone=$telefone;
+            $contato_class->celular=$celular;
+            $contato_class->email=$email;
+
+            $contato_class->id_pessoa=$id_pessoa;
+            
+            $contato_class->Update($contato_class);
+          }
         }
 
         //Método Apagar um Registro
@@ -83,7 +102,17 @@
         //Método Buscar um Registro pelo ID
         public function Buscar(){
 
+              //Recebe o ID enviado na View no click do Editar!
+              $id_pessoa=$_GET['id_pessoa'];
 
+              require_once('models/contato_class.php');
+              $listContatos_Controller = new Contato();
+
+              //Coloca o código selecionado no objeto instanciado
+              $listContatos_Controller->id_pessoa=$id_pessoa;
+              //Chamada para o método que vai pesquisar no BD pelo ID
+              $list = $listContatos_Controller->SelectById($listContatos_Controller);
+              require_once("index.php");
         }
     }
 
